@@ -11,3 +11,5 @@ e
 5src/test/java/demo/stepDefinitions/SeleniumForms.java,6\d\6d3817a5ae436d001cdd006579ae8a4a3d44ab9f
 W
 'src/test/java/demo/RunCucumberTest.java,a\b\abce7a4b681b2a929262b085b53e3991876f0a40
+>
+.gitlab-ci.yml,5\8\587d266bb27a4dc3022bbed44dfa19849df3044c

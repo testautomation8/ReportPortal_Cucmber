@@ -15,7 +15,7 @@ public class BrowserFactory {
         switch (Browser) {
             case "CHROME":
 
-                System.setProperty("webdriver.chrome.driver","./Drivers/chromedriver.exe");
+                System.setProperty("webdriver.chrome.driver","./Drivers/chromedriver");
                 driver = new ChromeDriver();
                 break;
 
@@ -23,7 +23,7 @@ public class BrowserFactory {
 
                 ChromeOptions options = new ChromeOptions();
                 options.addArguments("--headless");
-                System.setProperty("webdriver.chrome.driver","./Drivers/chromedriver.exe");
+                System.setProperty("webdriver.chrome.driver","./Drivers/chromedriver");
                 driver = new ChromeDriver(options);
                 break;
         }

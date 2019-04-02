@@ -1,14 +1,10 @@
-image: java:latest
+image: maven:3.6.0-jdk-8-alpine
+variables:
+  MAVEN_CMD: "mvn"
 
 stages:
   - build
-  - execute
 
-build:
+maven_build:
   stage: build
-  script: 
-  - /usr/lib/jvm/java-8-openjdk-amd64/bin/javac  src/HelloWorld.java
-  - cd src
-  - pwd
-  - ls
-  - /usr/lib/jvm/java-8-openjdk-amd64/bin/java -cp . HelloWorld
+  script: ${MAVEN_CMD} test
