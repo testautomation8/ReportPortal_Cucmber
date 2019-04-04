@@ -9,7 +9,7 @@ public class BrowserFactory {
     WebDriver driver;
 
     //Method to invoke URL in the  Browser of choice
-    public static WebDriver OpenBrowser(WebDriver driver, String Browser) {
+    public WebDriver OpenBrowser(WebDriver driver, String Browser) {
 
         String OSType = System.getProperty("os.name").toUpperCase();
         switch (Browser) {
@@ -48,7 +48,7 @@ public class BrowserFactory {
     }
 
     //Method to Close the Browser
-    public static void Browser_Quit(WebDriver driver){
+    public void Browser_Quit(WebDriver driver){
 
         driver.quit();
 

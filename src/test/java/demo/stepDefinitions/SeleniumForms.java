@@ -1,32 +1,24 @@
 package demo.stepDefinitions;
 
 
-import cucumber.api.java.After;
-import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import demo.Framework.BrowserFactory;
-import demo.Framework.Initialization;
+import demo.Framework.BaseClass;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 
-public class SeleniumForms extends BrowserFactory {
+public class SeleniumForms extends BaseClass {
 
     WebDriver driver;
-    Initialization init;
+    //Initialization init;
+
     int int1;
     int int2;
 
-    @Before
-    public void beforeScenario(){
 
-       init = new Initialization();
-       driver = OpenBrowser(driver,init.getPropValue("Browser"));
-
-    }
 
     @Given("I am on sample website")
     public void i_am_on_sample_website() {
@@ -73,12 +65,7 @@ public class SeleniumForms extends BrowserFactory {
         Assert.assertTrue("Sum is incorrect", driver.findElement(By.id("displayvalue")).getText().contains(Integer.toString(int1+int2)));
     }
 
-    @After
-    public void afterScenario(){
 
-        Browser_Quit(driver);
-
-    }
 
 
 }
