@@ -11,11 +11,18 @@ public class BrowserFactory {
     //Method to invoke URL in the  Browser of choice
     public static WebDriver OpenBrowser(WebDriver driver, String Browser) {
 
-
+        String OSType = System.getProperty("os.name").toUpperCase();
         switch (Browser) {
             case "CHROME":
-
-                System.setProperty("webdriver.chrome.driver","./Drivers/chromedriver");
+                if(OSType.contains("WIN")){
+                    System.setProperty("webdriver.chrome.driver","./Drivers/chromedriver.exe");
+                }
+                else if(OSType.contains("MAC")){
+                    System.setProperty("webdriver.chrome.driver","./Drivers/chromedriver");
+                }
+                else{
+                    System.setProperty("webdriver.chrome.driver","./Drivers/chromedriver");
+                }
                 driver = new ChromeDriver();
                 break;
 
@@ -23,7 +30,15 @@ public class BrowserFactory {
 
                 ChromeOptions options = new ChromeOptions();
                 options.addArguments("--headless");
-                System.setProperty("webdriver.chrome.driver","./Drivers/chromedriver");
+                if(OSType.contains("WIN")){
+                    System.setProperty("webdriver.chrome.driver","./Drivers/chromedriver.exe");
+                }
+                else if(OSType.contains("MAC")){
+                    System.setProperty("webdriver.chrome.driver","./Drivers/chromedriver");
+                }
+                else{
+                    System.setProperty("webdriver.chrome.driver","./Drivers/chromedriver");
+                }
                 driver = new ChromeDriver(options);
                 break;
         }
