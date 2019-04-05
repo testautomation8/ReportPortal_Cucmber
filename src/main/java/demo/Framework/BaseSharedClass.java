@@ -5,13 +5,13 @@ import cucumber.api.java.Before;
 import org.openqa.selenium.WebDriver;
 
 
-public class BaseClass {
+public class BaseSharedClass {
 
     WebDriver driver;
     BrowserFactory browFact;
     public Initialization init;
 
-    public BaseClass(){
+    public BaseSharedClass(){
 
         init = new Initialization();
         browFact= new BrowserFactory();
@@ -29,6 +29,14 @@ public class BaseClass {
 
         browFact.Browser_Quit(driver);
 
+    }
+
+    public Initialization getInit(){
+        return init;
+    }
+
+    public WebDriver getDriver(){
+        return driver;
     }
 
 

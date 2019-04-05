@@ -4,21 +4,28 @@ package demo.stepDefinitions;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import demo.Framework.BaseClass;
+
+import demo.Framework.BaseSharedClass;
+import demo.Framework.Initialization;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 
-public class SeleniumForms extends BaseClass {
+public class SeleniumForms{
 
     WebDriver driver;
-    //Initialization init;
+    BaseSharedClass baseShrCls;
+    Initialization init;
+
+    public SeleniumForms( BaseSharedClass baseShrCls){
+        this.baseShrCls=baseShrCls;
+        init = baseShrCls.getInit();
+        driver = baseShrCls.getDriver();
+    }
 
     int int1;
     int int2;
-
-
 
     @Given("I am on sample website")
     public void i_am_on_sample_website() {
