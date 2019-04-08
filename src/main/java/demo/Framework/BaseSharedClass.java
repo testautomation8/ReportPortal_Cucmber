@@ -19,16 +19,12 @@ public class BaseSharedClass {
 
     @Before
     public void beforeScenario(){
-
        driver = browFact.OpenBrowser(driver,init.getPropValue("Browser"));
-
     }
 
     @After
     public void afterScenario(){
-
         browFact.Browser_Quit(driver);
-
     }
 
     public Initialization getInit(){
