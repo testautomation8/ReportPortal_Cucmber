@@ -4,7 +4,6 @@ package demo.stepDefinitions;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-
 import demo.Framework.BaseSharedClass;
 import demo.Framework.Initialization;
 import org.junit.Assert;
@@ -22,6 +21,7 @@ public class SeleniumForms{
         this.baseShrCls=baseShrCls;
         init = baseShrCls.getInit();
         driver = baseShrCls.getDriver();
+
     }
 
     int int1;
@@ -46,6 +46,7 @@ public class SeleniumForms{
     }
 
     @Then("My message should be displayed")
+
     public void my_message_should_be_displayed() {
         Assert.assertTrue("Message is incorrect",driver.findElement(By.id("display")).getText().contains("This is test for single field"));
     }

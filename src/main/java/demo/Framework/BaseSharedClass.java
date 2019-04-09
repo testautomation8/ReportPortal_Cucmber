@@ -10,11 +10,13 @@ public class BaseSharedClass {
     WebDriver driver;
     BrowserFactory browFact;
     public Initialization init;
+    //CommonFunctions commFuncs;
 
     public BaseSharedClass(){
 
         init = new Initialization();
         browFact= new BrowserFactory();
+        //commFuncs= new CommonFunctions();
     }
 
     @Before
@@ -34,6 +36,8 @@ public class BaseSharedClass {
     public WebDriver getDriver(){
         return driver;
     }
+
+    //public CommonFunctions getCommFuncs(){return commFuncs;}
 
 
 }
