@@ -1,6 +1,7 @@
 package demo.stepDefinitions;
 
 
+import com.applitools.eyes.selenium.Eyes;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -16,11 +17,14 @@ public class SeleniumForms{
     WebDriver driver;
     BaseSharedClass baseShrCls;
     Initialization init;
+    Eyes eyes;
 
     public SeleniumForms( BaseSharedClass baseShrCls){
         this.baseShrCls=baseShrCls;
         init = baseShrCls.getInit();
         driver = baseShrCls.getDriver();
+        eyes = baseShrCls.getEyes();
+
 
     }
 
@@ -31,6 +35,7 @@ public class SeleniumForms{
     public void i_am_on_sample_website() {
 
         driver.get(init.getPropValue("URL"));
+        eyes.checkWindow(driver.getTitle());
     }
 
     @When("I enter value on input field")

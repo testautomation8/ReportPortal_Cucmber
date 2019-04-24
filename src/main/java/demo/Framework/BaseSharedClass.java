@@ -1,5 +1,7 @@
 package demo.Framework;
 
+import com.applitools.eyes.selenium.Eyes;
+import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import org.openqa.selenium.WebDriver;
@@ -10,22 +12,30 @@ public class BaseSharedClass {
     WebDriver driver;
     BrowserFactory browFact;
     public Initialization init;
-    //CommonFunctions commFuncs;
+    Eyes eyes;
+
 
     public BaseSharedClass(){
 
         init = new Initialization();
         browFact= new BrowserFactory();
-        //commFuncs= new CommonFunctions();
+
     }
 
     @Before
-    public void beforeScenario(){
-       driver = browFact.OpenBrowser(driver,init.getPropValue("Browser"));
+    public void beforeScenario(Scenario scenario){
+
+        driver = browFact.OpenBrowser(driver,init.getPropValue("Browser"));
+        eyes = new Eyes();
+        eyes.setApiKey(init.getPropValue("APPLITOOLS_API_KEY"));
+        eyes.open(driver, "Demo",scenario.getName());
+
+
     }
 
     @After
     public void afterScenario(){
+        eyes.close();
         browFact.Browser_Quit(driver);
     }
 
@@ -37,7 +47,7 @@ public class BaseSharedClass {
         return driver;
     }
 
-    //public CommonFunctions getCommFuncs(){return commFuncs;}
+    public Eyes getEyes(){ return eyes; }
 
 
 }
