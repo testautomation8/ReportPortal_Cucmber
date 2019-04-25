@@ -7,9 +7,12 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import demo.Framework.BaseSharedClass;
 import demo.Framework.Initialization;
+import io.cucumber.datatable.DataTable;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+
+import java.util.List;
 
 
 public class SeleniumForms{
@@ -25,17 +28,19 @@ public class SeleniumForms{
         driver = baseShrCls.getDriver();
         eyes = baseShrCls.getEyes();
 
-
     }
 
     int int1;
     int int2;
 
-    @Given("I am on sample website")
-    public void i_am_on_sample_website() {
-
-        driver.get(init.getPropValue("URL"));
-        eyes.checkWindow(driver.getTitle());
+    @Given("I am on sample page")
+    public void i_am_on_sample_page(DataTable dt) {
+        List<String> list=dt.asList(String.class);
+        String compURL = init.getPropValue("URL")+list.get(0)+ ".html";
+        driver.get(compURL);
+        if (Boolean.valueOf(init.getPropValue("LOOK_FEEL_Testing"))) {
+            eyes.checkWindow(driver.getTitle());
+        }
     }
 
     @When("I enter value on input field")

@@ -26,16 +26,20 @@ public class BaseSharedClass {
     public void beforeScenario(Scenario scenario){
 
         driver = browFact.OpenBrowser(driver,init.getPropValue("Browser"));
-        eyes = new Eyes();
-        eyes.setApiKey(init.getPropValue("APPLITOOLS_API_KEY"));
-        eyes.open(driver, "Demo",scenario.getName());
+        if (Boolean.valueOf(init.getPropValue("LOOK_FEEL_Testing"))){
+            eyes = new Eyes();
+            eyes.setApiKey(init.getPropValue("APPLITOOLS_API_KEY"));
+            eyes.open(driver, "Demo",scenario.getName());
+        }
 
 
     }
 
     @After
     public void afterScenario(){
-        eyes.close();
+        if (Boolean.valueOf(init.getPropValue("LOOK_FEEL_Testing"))) {
+            eyes.close();
+        }
         browFact.Browser_Quit(driver);
     }
 
