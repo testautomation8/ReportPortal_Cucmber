@@ -6,7 +6,7 @@ Feature: Practice forms in Selenium
     When I enter value on input field
     And I click on Show Message
     Then Message should be displayed
-      |display|This is test for single field|
+      |text|display|This is test for single field|
 
   Scenario Outline: Test multiple input field
     Given I am on sample page
@@ -22,5 +22,14 @@ Feature: Practice forms in Selenium
     Given I am on sample page
       |basic-checkbox-demo|
     When I click on CheckBox
+      |single|
     Then Message should be displayed
-      |txtAge|Success - Check box is checked|
+      |text|txtAge|Success - Check box is checked|
+
+  Scenario: Test Multiple Checkbox
+    Given I am on sample page
+      |basic-checkbox-demo|
+    When I click on CheckBox
+      |multiple|
+    Then Message should be displayed
+      |value|check1|Uncheck All|

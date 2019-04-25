@@ -27,7 +27,6 @@ public class SeleniumForms{
         init = baseShrCls.getInit();
         driver = baseShrCls.getDriver();
         eyes = baseShrCls.getEyes();
-
     }
 
     int int1;
@@ -50,26 +49,20 @@ public class SeleniumForms{
 
     @When("I click on Show Message")
     public void i_click_on_Show_Message() throws InterruptedException {
-        //Thread.sleep(3000);
         driver.findElement(By.xpath("//button[@onclick='showInput();']")).click();
-        //Thread.sleep(3000);
     }
 
     @When("I enter value {int} and {int}")
     public void i_enter_value_on_field_and_field(int val_1, int val_2) {
-
         int1 = val_1;
         int2 = val_2;
         driver.findElement(By.id("sum1")).sendKeys(Integer.toString(int1));
         driver.findElement(By.id("sum2")).sendKeys(Integer.toString(int2));
-
     }
 
     @When("I click on GetTotal")
     public void i_click_on_GetTotal() throws InterruptedException {
-        //Thread.sleep(3000);
         driver.findElement(By.xpath("//button[@onclick='return total()']")).click();
-        //Thread.sleep(3000);
     }
 
     @Then("I should be able to see the sum on screen")
@@ -78,17 +71,33 @@ public class SeleniumForms{
     }
 
     @When("I click on CheckBox")
-    public void i_click_on_CheckBox() {
-        driver.findElement(By.id("isAgeSelected")).click();
-    }
-
-    @Then("Message should be displayed")
-    public void message_should_be_displayed(DataTable dt) {
+    public void i_click_on_CheckBox(DataTable dt) {
         List<String> list = dt.asList(String.class);
-        Assert.assertTrue(list.get(1)+ " does not exist", driver.findElement(By.id(list.get(0))).getText().contains(list.get(1)));
+
+        if (list.get(0).toUpperCase().contains("SINGLE")) {
+            System.out.println("I am in single options");
+            driver.findElement(By.id("isAgeSelected")).click();
+        }
+        else if(list.get(0).toUpperCase().contains("MULTIPLE")) {
+
+            driver.findElement(By.xpath("//label[text()='Option 1']//input[@class='cb1-element']")).click();
+            driver.findElement(By.xpath("//label[text()='Option 2']//input[@class='cb1-element']")).click();
+            driver.findElement(By.xpath("//label[text()='Option 3']//input[@class='cb1-element']")).click();
+            driver.findElement(By.xpath("//label[text()='Option 4']//input[@class='cb1-element']")).click();
+        }
     }
 
-
+    //Take input as locator and text that needs to be validated
+    @Then("Message should be displayed")
+    public void message_should_be_displayed(DataTable dt) throws InterruptedException {
+        List<String> list = dt.asList(String.class);
+        if(list.get(0).toUpperCase().contains("TEXT")) {
+            Assert.assertTrue(list.get(2) + " does not exist", driver.findElement(By.id(list.get(1))).getText().contains(list.get(2)));
+        }
+        else{
+            Assert.assertTrue(list.get(2) + " does not exist", driver.findElement(By.id(list.get(1))).getAttribute("value").contains("Uncheck All"));
+            }
+        }
 
 }
 
