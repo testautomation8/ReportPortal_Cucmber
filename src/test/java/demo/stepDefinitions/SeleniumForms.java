@@ -55,12 +55,6 @@ public class SeleniumForms{
         //Thread.sleep(3000);
     }
 
-    @Then("My message should be displayed")
-
-    public void my_message_should_be_displayed() {
-        Assert.assertTrue("Message is incorrect",driver.findElement(By.id("display")).getText().contains("This is test for single field"));
-    }
-
     @When("I enter value {int} and {int}")
     public void i_enter_value_on_field_and_field(int val_1, int val_2) {
 
@@ -83,6 +77,16 @@ public class SeleniumForms{
         Assert.assertTrue("Sum is incorrect", driver.findElement(By.id("displayvalue")).getText().contains(Integer.toString(int1+int2)));
     }
 
+    @When("I click on CheckBox")
+    public void i_click_on_CheckBox() {
+        driver.findElement(By.id("isAgeSelected")).click();
+    }
+
+    @Then("Message should be displayed")
+    public void message_should_be_displayed(DataTable dt) {
+        List<String> list = dt.asList(String.class);
+        Assert.assertTrue(list.get(1)+ " does not exist", driver.findElement(By.id(list.get(0))).getText().contains(list.get(1)));
+    }
 
 
 
