@@ -4,7 +4,7 @@ Feature: Practice DatePickers in Selenium
     Given I am on sample page
       | bootstrap-date-picker-demo |
     When I select date on input field
-    |25/04/2019|
+      | 25/04/2019 |
     Then Field should have the selected date
 
 
