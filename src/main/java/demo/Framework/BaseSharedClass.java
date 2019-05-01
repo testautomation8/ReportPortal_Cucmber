@@ -26,6 +26,7 @@ public class BaseSharedClass {
     public void beforeScenario(Scenario scenario){
 
         driver = browFact.OpenBrowser(driver,init.getPropValue("Browser"));
+
         if (Boolean.valueOf(init.getPropValue("LOOK_FEEL_Testing"))){
             eyes = new Eyes();
             eyes.setApiKey(init.getPropValue("APPLITOOLS_API_KEY"));
