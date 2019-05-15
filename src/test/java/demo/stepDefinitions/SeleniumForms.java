@@ -75,7 +75,6 @@ public class SeleniumForms{
         List<String> list = dt.asList(String.class);
 
         if (list.get(0).toUpperCase().contains("SINGLE")) {
-            System.out.println("I am in single options");
             driver.findElement(By.id("isAgeSelected")).click();
         }
         else if(list.get(0).toUpperCase().contains("MULTIPLE")) {
